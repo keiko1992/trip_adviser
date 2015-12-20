@@ -4,12 +4,12 @@ machine:
   ruby:
     version: 2.2.4
 
-deployment:
-  staging:
-    branch: master
-    commands:
-      - heroku maintenance:on --app tripadviser-staging
-      - heroku scale worker=0 --app tripadviser-staging
-      - git push -f git@heroku.com:tripadviser-staging.git $CIRCLE_SHA1:refs/heads/master
-      - heroku run 'rake db:migrate' --app tripadviser-staging
-      - heroku maintenance:off --app tripadviser-staging
+# deployment:
+#   staging:
+#     branch: master
+#     commands:
+#       - heroku maintenance:on --app tripadviser-staging
+#       - heroku scale worker=0 --app tripadviser-staging
+#       - git push -f git@heroku.com:tripadviser-staging.git $CIRCLE_SHA1:refs/heads/master
+#       - heroku run 'rake db:migrate' --app tripadviser-staging
+#       - heroku maintenance:off --app tripadviser-staging
