@@ -1,13 +1,14 @@
 # == Route Map
 #
-# You don't have any routes defined!
-#
-# Please add some routes in config/routes.rb.
-#
-# For more information about routes, see the Rails guide: http://guides.rubyonrails.org/routing.html.
+#     Prefix Verb URI Pattern           Controller#Action
+#       root GET  /                     home#index
+# home_index GET  /home/index(.:format) home#index
 #
 
 # bundle exec annotate --routes
 
 Rails.application.routes.draw do
+  root 'home#index'
+  get 'home/index'
+
 end
