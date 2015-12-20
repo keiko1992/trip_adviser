@@ -15,3 +15,12 @@
 //= require bootstrap/dist/js/bootstrap.min.js
 //= require turbolinks
 //= require_tree .
+
+
+
+$(document).ready (function(){
+  // hide alert automatically
+  $(".alert").fadeTo(2000, 500).slideUp(300, function(){
+    $(".alert").alert('close');
+  });
+});

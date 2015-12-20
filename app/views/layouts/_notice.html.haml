@@ -1,0 +1,8 @@
+- if notice
+  .container-fluid.alert-wrapper
+    .alert.alert-info{role: "alert"}
+      = fa_icon "check-circle", text: "#{notice}"
+- elsif alert
+  .container-fluid.alert-wrapper
+    .alert.alert-danger{role: "alert"}
+      = fa_icon "exclamation-circle", text: "#{alert}"
