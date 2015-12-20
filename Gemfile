@@ -62,5 +62,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'kaminari'
 gem "meta-tags"
 gem 'paranoia', '~> 2.0'
+gem 'ransack'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'seed-fu', '~> 2.3'

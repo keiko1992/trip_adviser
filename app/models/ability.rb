@@ -7,5 +7,8 @@ class Ability
     cannot :read, :all
     cannot :update, :all
     cannot :destroy, :all
+
+    # Article
+    can :read, Article
   end
 end

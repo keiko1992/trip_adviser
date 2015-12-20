@@ -3,5 +3,9 @@ class AbilityAdmin
 
   def initialize(admin)
     can :manage, :all
+
+    # Article
+    cannot :create, Article
+    cannot :update, Article
   end
 end
