@@ -40,6 +40,7 @@ $e0:        #e0e0e0;
 $f7:        #f7f7f7;
 $pc:        #2c9ab7; // primary color
 $pc_d10:    #13819e; // primary color + 10% darker
+$lb:        #6dc5dc; // light blue
 $pn:        #f09c8c; // pink
 
 // Typography
@@ -101,3 +102,39 @@ body {
 
 // Font
 .logo-font {font-family: $logo-font;}
+
+// Form
+.field {margin-bottom: 20px;}
+.form-control {border: 2px solid $e0; box-shadow: none;}
+.form-control:hover {border-color: $aa; box-shadow: none;}
+.form-control:focus {border-color: $lb; box-shadow: none;}
+.input-group-addon {border-top: 2px solid $e0; border-bottom: 2px solid $e0; border-left: 2px solid $e0;}
+.select-form-control {width: auto; display: inline-block;}
+
+// Image
+.image-round {@include border-radius(4px);}
+
+// Pagination
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {background-color: $pc; border-color: $pc;}
+.pagination>li>a, .pagination>li>span, .pagination>li>a:hover, .pagination>li>span:hover {color: $pc;}
+
+// Spacing
+.mb-5 {margin-bottom: 5px;}
+.mb-10 {margin-bottom: 10px;}
+.mb-20 {margin-bottom: 20px;}
+.mb-40 {margin-bottom: 40px;}
+.mh-100 {min-height: 100px;}
+
+
+
+/* Pages */
+// Home
+#home {
+  padding-bottom: 50px;
+}
+
+// User
+#user-authentification {
+  padding: 50px 0;
+  h2 {font-size: 24px; margin-bottom: 20px;}
+}
