@@ -151,6 +151,24 @@ body {
 // Home
 #home {
   padding-bottom: 50px;
+  #latest-articles {
+    article {
+      margin-bottom: 40px; min-height: 280px;
+      h1 {color: $b3; font-size: 16px; font-weight: 700; line-height: 1.4; margin-bottom: 5px;}
+      img {@include border-radius(4px); margin-bottom: 10px;}
+      a:hover, a:focus {text-decoration: none;}
+      .category {font-size: 12px; margin-bottom: 5px;}
+      .content {
+        color: $aa; font-size: 12px; font-weight: 100; margin-bottom: 5px;
+        p {line-height: 1.4;}
+      }
+      .date {color: $aa; font-size: 12px; font-weight: 100; margin: 3px 0 5px;}
+    }
+    article:hover {
+      img {@include opacity(0.7); @include transition(0.5s);}
+    }
+    .readmore .btn {font-weight: 700;}
+  }
 }
 
 // User
