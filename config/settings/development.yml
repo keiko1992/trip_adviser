@@ -1,0 +1,7 @@
+s3:
+  public:
+    article_image_path: ':class/images/:id/:filename/:style'
+    bucket: <%= ENV['DEV_S3_PUBLIC_BUCKET_NAME'] %>
+  private:
+    article_image_path: ':class/images/:id/:filename/:style'
+    bucket: <%= ENV['DEV_S3_PRIVATE_BUCKET_NAME'] %>

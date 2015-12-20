@@ -1,0 +1,7 @@
+s3:
+  public:
+    path: ':rails_root/public/system/:class/:id/:filename/:style'
+    bucket:
+  private:
+    path: ':rails_root/public/system/:class/:id/:filename/:style'
+    bucket:
