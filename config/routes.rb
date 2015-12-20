@@ -29,6 +29,15 @@
 #        user_confirmation POST   /users/confirmation(.:format)     devise/confirmations#create
 #    new_user_confirmation GET    /users/confirmation/new(.:format) devise/confirmations#new
 #                          GET    /users/confirmation(.:format)     devise/confirmations#show
+#            list_articles GET    /articles/list(.:format)          articles#list
+#                 articles GET    /articles(.:format)               articles#index
+#                          POST   /articles(.:format)               articles#create
+#              new_article GET    /articles/new(.:format)           articles#new
+#             edit_article GET    /articles/:id/edit(.:format)      articles#edit
+#                  article GET    /articles/:id(.:format)           articles#show
+#                          PATCH  /articles/:id(.:format)           articles#update
+#                          PUT    /articles/:id(.:format)           articles#update
+#                          DELETE /articles/:id(.:format)           articles#destroy
 #
 
 # bundle exec annotate --routes
@@ -47,5 +56,12 @@ Rails.application.routes.draw do
     sessions:       "users/sessions",
     passwords:      "users/passwords"
   }
+
+  # Article
+  resources :articles do
+    collection do
+      get 'list'
+    end
+  end
 
 end

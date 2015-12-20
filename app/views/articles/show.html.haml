@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @article.user
+%p
+  %b Title:
+  = @article.title
+%p
+  %b Content:
+  = @article.content
+%p
+  %b Place:
+  = @article.place
+%p
+  %b Slug:
+  = @article.slug
+%p
+  %b Published:
+  = @article.published
+%p
+  %b Published at:
+  = @article.published_at
+%p
+  %b Daleted at:
+  = @article.daleted_at
+
+= link_to 'Edit', edit_article_path(@article)
+\|
+= link_to 'Back', articles_path
