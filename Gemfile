@@ -50,7 +50,9 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 # Authentification and Security
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+gem 'cancancan'
+gem 'devise'
 
 # Miscellaneous stuffs
 gem 'bower-rails', '~> 0.10.0'
