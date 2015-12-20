@@ -54,6 +54,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Miscellaneous stuffs
+gem 'bower-rails', '~> 0.10.0'
 gem 'config'
 gem 'friendly_id', '~> 5.1.0'
 gem 'jbuilder', '~> 2.0'
