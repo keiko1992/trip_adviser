@@ -40,6 +40,7 @@ group :test do
 end
 
 # Frontend
+gem "autoprefixer-rails"
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'haml-rails'
