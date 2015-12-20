@@ -34,4 +34,19 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :trackable, :validatable
+
+  validates :last_name, :first_name, :city, :slug, presence: true
+
+  before_validation :set_slug
+
+  extend FriendlyId
+  friendly_id :slug, use: [:slugged, :history]
+
+  def set_slug
+    self.slug = SecureRandom.hex(6) if self.slug.nil?
+  end
+
+  def name
+    "#{self.last_name} #{self.first_name}"
+  end
 end
