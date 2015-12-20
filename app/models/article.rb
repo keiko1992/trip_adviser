@@ -2,17 +2,21 @@
 #
 # Table name: articles
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  title        :string
-#  content      :text
-#  place        :string
-#  slug         :string
-#  published    :boolean          default(FALSE)
-#  published_at :datetime
-#  deleted_at   :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                 :integer          not null, primary key
+#  user_id            :integer
+#  title              :string
+#  content            :text
+#  place              :string
+#  slug               :string
+#  published          :boolean          default(FALSE)
+#  published_at       :datetime
+#  deleted_at         :datetime
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 # Indexes
 #
