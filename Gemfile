@@ -26,6 +26,7 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'bullet'
+  gem 'erb2haml' # run 'bundle exec rake haml:replace_erbs'
   gem 'web-console', '~> 2.0'
 end
 
@@ -41,6 +42,7 @@ end
 # Frontend
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
