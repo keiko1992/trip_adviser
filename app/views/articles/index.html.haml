@@ -1,35 +1,27 @@
-%h1 Listing articles
+- title "最新の記事一覧"
+#article
+  .container
+    %header.text-center.mb-20
+      %h2= title
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Title
-      %th Content
-      %th Place
-      %th Slug
-      %th Published
-      %th Published at
-      %th Daleted at
-      %th
-      %th
-      %th
+    .row
+      .col-md-8
+        %section.articles-list
+          .row
+            - @articles.each do |article|
+              %article.col-sm-6
+                = link_to article_path(article.slug) do
+                  - if article.image.present?
+                    = image_tag(article.authenticated_image_url(:small))
+                  - else
+                    = image_tag('noimage.jpg')
+                  %h1= article.title
+                  .content= article.content.truncate(50).html_safe
+                  .clearfix
+                    .date.pull-left= article.published_at.strftime("%Y/%-m/%-d")
+                    .btn.btn-xs.btn-ghost.pull-right 続きを読む
 
-  %tbody
-    - @articles.each do |article|
-      %tr
-        %td= article.user
-        %td= article.title
-        %td= article.content
-        %td= article.place
-        %td= article.slug
-        %td= article.published
-        %td= article.published_at
-        %td= article.daleted_at
-        %td= link_to 'Show', article
-        %td= link_to 'Edit', edit_article_path(article)
-        %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          .text-center= paginate @articles
 
-%br
-
-= link_to 'New Article', new_article_path
+      .col-md-4
+        %aside#sidebar
