@@ -12,3 +12,16 @@ You can run rspec with guard. Temporary, it will run without ```Spring```.
 ```
 $ bundle exec guard
 ```
+
+## Sign In
+As Admin (admins/sign_in)
+```
+email: admin@example.com
+password: password
+```
+
+As User (users/sign_in)
+```
+email: test@example.com
+password: password
+```
