@@ -21,6 +21,9 @@
         = f.text_area :content, class: "form-control", required: true
     .col-md-4
       .field
+        = f.label :place
+        = f.text_field :place, class: "form-control", required: true
+      .field
         = f.label :image
         %br
         .mb-10= f.file_field :image
