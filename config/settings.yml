@@ -1,0 +1,11 @@
+site:
+  name: "Trip Adviser"
+  page_description: "サイトの説明文をここに入力"
+
+  meta:
+    og:
+      type: 'website'
+      image: 'logo_ogp.jpg' # facebook投稿用のデフォルト画像を設定
+    twitter:
+      card: 'summary_large_image'
+      site: '@XXX' # twitterアカウントを入力
