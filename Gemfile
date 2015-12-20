@@ -24,6 +24,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'better_errors'
   gem 'web-console', '~> 2.0'
 end
 
