@@ -42,6 +42,7 @@ end
 # Frontend
 gem "autoprefixer-rails"
 gem 'coffee-rails', '~> 4.1.0'
+gem 'compass-rails', github: "Compass/compass-rails"
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
