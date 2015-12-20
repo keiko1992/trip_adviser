@@ -57,4 +57,5 @@ gem 'uglifier', '>= 1.3.0'
 gem 'config'
 gem 'friendly_id', '~> 5.1.0'
 gem 'jbuilder', '~> 2.0'
+gem 'kaminari'
 gem 'sdoc', '~> 0.4.0', group: :doc
