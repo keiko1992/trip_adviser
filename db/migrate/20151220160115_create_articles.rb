@@ -8,7 +8,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string :slug
       t.boolean :published, default: false
       t.datetime :published_at
-      t.datetime :daleted_at
+      t.datetime :deleted_at
 
       t.timestamps null: false
     end

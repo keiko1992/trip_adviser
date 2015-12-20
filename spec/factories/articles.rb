@@ -10,7 +10,7 @@
 #  slug         :string
 #  published    :boolean          default(FALSE)
 #  published_at :datetime
-#  daleted_at   :datetime
+#  deleted_at   :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
@@ -21,14 +21,33 @@
 
 FactoryGirl.define do
   factory :article do
-    user nil
-title "MyString"
-content "MyText"
-place "MyString"
-slug "MyString"
-published false
-published_at "2015-12-21 01:01:15"
-daleted_at "2015-12-21 01:01:15"
+    user_id {Faker::Number.number(1)}
+    title {Faker::Lorem.sentence}
+    content {Faker::Lorem.paragraph}
+    place {Faker::Address.city}
+    slug {Faker::Number.hexadecimal(12)}
+
+    factory :published_article do
+      published true
+      published_at Time.zone.now
+    end
+
+    factory :future_article do
+      published true
+      published_at Time.zone.now + 1.week
+    end
+
+    factory :hidden_article do
+      published false
+      published_at Time.zone.now
+    end
+
+    factory :featured_article do
+      published true
+      published_at Time.zone.now
+      featured true
+      featured_at Time.zone.now
+    end
   end
 
 end

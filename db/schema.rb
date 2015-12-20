@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20151220160115) do
     t.string   "slug"
     t.boolean  "published",    default: false
     t.datetime "published_at"
-    t.datetime "daleted_at"
+    t.datetime "deleted_at"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
