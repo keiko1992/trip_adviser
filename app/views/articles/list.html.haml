@@ -1,0 +1,58 @@
+- title "作成した記事"
+
+#article-management
+  .container
+    %header
+      %h1= title
+
+    %section#search
+      %h2 記事を絞り込む
+      = search_form_for @q, url: list_articles_path, method: :post do |f|
+        .row
+          .field.col-md-6
+            = f.label :title_cont, "キーワード（タイトル or 本文から検索）"
+            = f.search_field :title_or_content_cont, class: "form-control"
+          .field.col-md-6
+            = f.label :published_eq, "ステータス"
+            = f.select :published_eq, {"公開済み" => true, "非公開" => false}, {prompt: "選択してください"}, class: "form-control"
+        .actions.text-right
+          = f.submit '検索する', class: "btn btn-pc"
+          = link_to "リセット", list_articles_path, class: "btn btn-ghost"
+
+    %section
+      .clearfix
+        .pull-left
+          %h2 記事一覧
+          .mb-10
+            %small ※ヘッダーをクリックするとソートできます
+        - if can? :create, Article
+          .pull-right= link_to '新しい記事を作成', new_article_path, class: "btn btn-pc"
+      .panel.panel-default
+        %table.table.table-hover
+          %thead
+            %tr
+              %th #
+              %th アイキャッチ画像
+              %th= sort_link @q, :title
+              %th= sort_link @q, :published, "ステータス"
+              %th= sort_link @q, :published_at, "公開日時"
+              %th
+              - if can? :update, Article
+                %th
+              %th
+
+          %tbody
+            - i = 0
+            - @articles.each do |article|
+              %tr
+                %td= i += 1
+                %td= image_tag(article.authenticated_image_url(:small), size: "160x90") if article.image.present?
+                %td= article.title
+                %td= article.published? ? "公開済み" : "非公開"
+                %td= article.published_at.strftime("%Y-%m-%d %H:%M") if article.published_at && article.published?
+                %td= link_to '表示', article_path(article.slug)
+                - if can? :update, Article
+                  %td= link_to '編集', edit_article_path(article.slug)
+                %td= link_to '削除', article, method: :delete, data: {confirm: '本当によろしいですか？' }
+
+      .text-center= paginate @articles

@@ -1,0 +1,15 @@
+#sidebar-latest-articles
+  %h4 最新の記事はこちら
+  %ul.list-unstyled
+    - @latest_articles.each do |article|
+      %li
+        %article.row
+          = link_to article_path(article.slug) do
+            .thumb.col-xs-3
+              - if article.image.present?
+                = image_tag(article.authenticated_image_url(:thumb))
+              - else
+                = image_tag('noimage_thumb.jpg')
+            .body.col-xs-9
+              %h1= article.title
+              .date= article.published_at.strftime("%Y/%-m/%-d")

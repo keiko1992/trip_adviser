@@ -1,7 +1,9 @@
-%h1 Editing article
+- title "#{@article.title}を編集"
 
-= render 'form'
+#article-management
+  .container
+    %header
+      %h1= title
 
-= link_to 'Show', @article
-\|
-= link_to 'Back', articles_path
+    %section
+      = render 'form'

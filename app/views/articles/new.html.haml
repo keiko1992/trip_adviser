@@ -1,5 +1,9 @@
-%h1 New article
+- title "新しい記事を作成"
 
-= render 'form'
+#article-management
+  .container
+    %header
+      %h1= title
 
-= link_to 'Back', articles_path
+    %section
+      = render 'form'

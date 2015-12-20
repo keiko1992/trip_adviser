@@ -84,7 +84,27 @@ body {
   .copyright {margin-top: 10px;}
 }
 
-#sidebar {}
+#sidebar {
+  h4 {font-size: 14px; font-weight: 700; margin-bottom: 10px;}
+  #sidebar-latest-articles {
+    margin-bottom: 40px;
+    article {
+      margin-bottom: 20px;
+      .thumb {
+        padding-right: 5px;
+        img {@include border-radius(4px);}
+      }
+      .body {
+        padding-left: 5px;
+        h1 {color: $b3; font-size: 13px; font-weight: 700; line-height: 1.4; margin-bottom: 5px;}
+        .date {color: $aa; font-size: 12px; font-weight: 100;}
+      }
+    }
+    article:hover {
+      img {@include opacity(0.7); @include transition(0.5s);}
+    }
+  }
+}
 
 
 
@@ -137,4 +157,58 @@ body {
 #user-authentification {
   padding: 50px 0;
   h2 {font-size: 24px; margin-bottom: 20px;}
+}
+
+// Article & Category
+#article-management {
+  padding: 50px 0;
+  h1 {font-size: 24px; margin-bottom: 20px;}
+  h2 {font-size: 16px;}
+  header {}
+  #search {
+    background-color: $f7; @include border-radius(4px); margin-bottom: 50px; padding: 15px;
+    h2 {margin-bottom: 10px;}
+  }
+  table {
+    thead {
+      th a {color: $b3;}
+    }
+  }
+}
+
+#article {
+  padding: 50px 0;
+  header {
+    margin-bottom: 50px;
+    h1 {font-size: 26px; margin-bottom: 10px;}
+    .date {color: $aa; border-right: 1px solid $e0; margin: 0 10px 10px 0; padding-right: 10px;}
+    .social {
+      .facebook, .twitter {margin-right: 5px;}
+    }
+    .full-header {margin-left: -15px; margin-right: -15px;}
+  }
+  .content {
+    h3, h4 {margin: 80px 0 20px;}
+    p {font-size: 16px; line-height: 1.8; margin-bottom: 30px;}
+  }
+  .navigation {
+    margin: 30px 0;
+    small {color: $aa;}
+    h5 {color: $b3; margin-top: 5px;}
+    img {@include border-radius(4px);}
+    .prev_article, .next_article {margin-bottom: 20px;}
+  }
+  .related-articles, .articles-list {
+    article {
+      margin-bottom: 40px; min-height: 280px;
+      h1 {color: $b3; font-size: 16px; font-weight: 700; line-height: 1.4; margin-bottom: 5px;}
+      img {@include border-radius(4px); margin-bottom: 10px;}
+      a:hover, a:focus {text-decoration: none;}
+      .content, .content p {color: $aa; font-size: 12px; font-weight: 100; line-height: 1.4; margin-bottom: 5px;}
+      .date {color: $aa; font-size: 12px; font-weight: 100; margin: 3px 0 5px;}
+    }
+    article:hover {
+      img {@include opacity(0.7); @include transition(0.5s);}
+    }
+  }
 }

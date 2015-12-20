@@ -1,30 +1,62 @@
-%p#notice= notice
+- title @article.title
 
-%p
-  %b User:
-  = @article.user
-%p
-  %b Title:
-  = @article.title
-%p
-  %b Content:
-  = @article.content
-%p
-  %b Place:
-  = @article.place
-%p
-  %b Slug:
-  = @article.slug
-%p
-  %b Published:
-  = @article.published
-%p
-  %b Published at:
-  = @article.published_at
-%p
-  %b Daleted at:
-  = @article.daleted_at
+#article
+  .container
+    %header
+      %h1= title
+      .claerfix
+        .date.pull-left= @article.published_at.strftime("%Y.%-m.%-d")
 
-= link_to 'Edit', edit_article_path(@article)
-\|
-= link_to 'Back', articles_path
+        .social.clearfix
+          .button.facebook.pull-left
+            #fb-root
+            .fb-like{"data-href" => request.original_url, "data-layout" => "button", "data-send" => "false", "data-show-faces" => "false", "data-width" => "120"}
+          .button.twitter.pull-left
+            %a.twitter-share-button{"data-lang" => "ja", "data-text" => @article.title, "data-url" => request.original_url, href: "https://twitter.com/share"} ツイート
+          .button.hatena.pull-left
+            %a.hatena-bookmark-button{"data-hatena-bookmark-lang" => "ja", "data-hatena-bookmark-layout" => "standard-noballoon", "data-hatena-bookmark-title" => @article.title, href: "http://b.hatena.ne.jp/entry/", title: "このエントリーをはてなブックマークに追加"}
+              %img{alt: "このエントリーをはてなブックマークに追加", height: "20", src: "https://b.st-hatena.com/images/entry-button/button-only@2x.png", style: "border: none;", width: "20"}
+          .button.pocket.pull-left
+            %a.pocket-btn{"data-lang" => "en", "data-pocket-align" => "left", "data-pocket-count" => "horizontal", "data-save-url" => request.original_url, href: "https://getpocket.com/save"} ポケット
+
+      - if @article.image.present?
+        #header-image
+          .hidden-xs= image_tag(@article.authenticated_image_url(:wide))
+          .hidden-sm.hidden-md.hidden-lg.full-header= image_tag(@article.authenticated_image_url(:large))
+
+    .row
+      %section.col-md-8
+        %article.content= @article.content.html_safe
+
+        %section.navigation
+          .row
+            - if @prev_article
+              .prev_article.col-md-6.text-left
+                = link_to article_path(@prev_article.slug) do
+                  .row
+                    .col-xs-4
+                      - if @prev_article.image.present?
+                        = image_tag(@prev_article.authenticated_image_url(:thumb))
+                      - else
+                        = image_tag('noimage_thumb.jpg')
+                    .col-xs-8
+                      %small 前の記事
+                      %h5= @prev_article.title
+
+            - if @next_article
+              - unless @prev_article
+                .col-md-6
+              .next_article.col-md-6.text-right
+                = link_to article_path(@next_article.slug) do
+                  .row
+                    .col-xs-8
+                      %small 次の記事
+                      %h5= @next_article.title
+                    .col-xs-4
+                      - if @next_article.image.present?
+                        = image_tag(@next_article.authenticated_image_url(:thumb))
+                      - else
+                        = image_tag('noimage_thumb.jpg')
+
+      %aside#sidebar.col-md-4
+        = render 'shared/latest_articles', locals: {latest_articles: @latest_articles}
