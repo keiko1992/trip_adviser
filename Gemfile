@@ -12,6 +12,7 @@ end
 
 group :development, :test do
   gem 'byebug'
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'rspec-rails'
