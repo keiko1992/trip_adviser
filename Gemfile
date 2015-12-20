@@ -6,12 +6,26 @@ gem 'rails', '4.2.5'
 
 group :development, :test do
   gem 'byebug'
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', '2.8.0', require: false
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'sqlite3'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'launchy'
+  gem 'selenium-webdriver'
 end
 
 # Frontend
