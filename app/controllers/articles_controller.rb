@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article = Article.new(content: "")
   end
 
   # GET /articles/1/edit

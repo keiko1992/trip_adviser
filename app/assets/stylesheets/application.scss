@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require bootstrap/dist/css/bootstrap.min.css
+ *= require medium-editor/dist/css/medium-editor
+ *= require medium-editor/dist/css/themes/flat
  *= require_self
  */
 
@@ -192,6 +194,22 @@ body {
       th a {color: $b3;}
     }
   }
+  .editable {
+    overflow-y: scroll;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    resize: none;
+    min-height: 300px;
+    border: 2px solid $e0;
+    box-shadow: none;
+    @include border-radius(4px);
+    outline: none;
+    h2 {font-size: 24px; margin: 80px 0 20px;}
+    h3 {font-size: 18px; margin: 80px 0 20px;}
+    p {font-size: 16px; line-height: 1.8; margin-bottom: 30px;}
+  }
+  .editable:hover {border-color: $aa; box-shadow: none;}
+  .editable:focus {border-color: $lb; box-shadow: none;}
   .uploading {color: $pc; font-weight: 700; border: 2px solid $lb; @include border-radius(4px); padding: 10px 15px;}
 }
 
