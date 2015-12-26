@@ -7,5 +7,9 @@ class AbilityAdmin
     # Article
     cannot :create, Article
     cannot :update, Article
+
+    # ArticleImage
+    cannot :create, ArticleImage
+    cannot :destroy, ArticleImage
   end
 end

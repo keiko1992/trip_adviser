@@ -39,6 +39,8 @@
 #                          PATCH    /articles/:id(.:format)           articles#update
 #                          PUT      /articles/:id(.:format)           articles#update
 #                          DELETE   /articles/:id(.:format)           articles#destroy
+#           article_images DELETE   /article_images/destroy(.:format) article_images#destroy
+#                          POST     /article_images(.:format)         article_images#create
 #
 
 # bundle exec annotate --routes
@@ -68,6 +70,11 @@ Rails.application.routes.draw do
   resources :articles do
     collection do
       match 'list', to: 'articles#list', via: [:get, :post]
+    end
+  end
+  resources :article_images, only: :create do
+    collection do
+      delete 'destroy'
     end
   end
 

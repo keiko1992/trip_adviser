@@ -35,6 +35,10 @@ RSpec.describe Article, type: :model do
     is_expected.to belong_to(:user)
   end
 
+  it "has many article_images" do
+    is_expected.to have_many(:article_images)
+  end
+
   it "is invalid without an user_id" do
     article = build(:article, user_id: nil)
     article.valid?
