@@ -1,0 +1,14 @@
+%section.articles-list
+  .row
+    - @articles.each do |article|
+      %article.col-sm-6
+        = link_to article_path(article.slug) do
+          - if article.image.present?
+            = image_tag(article.image.expiring_url(30.seconds, :small))
+          - else
+            = image_tag('noimage.jpg')
+          %h1= article.title
+          .content= summarize_content(article.content, 50)
+          .clearfix
+            .date.pull-left= article.published_at.strftime("%Y/%-m/%-d")
+            .btn.btn-xs.btn-ghost.pull-right 続きを読む

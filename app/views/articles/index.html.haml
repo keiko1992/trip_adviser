@@ -6,22 +6,8 @@
 
     .row
       .col-md-8
-        %section.articles-list
-          .row
-            - @articles.each do |article|
-              %article.col-sm-6
-                = link_to article_path(article.slug) do
-                  - if article.image.present?
-                    = image_tag(article.image.expiring_url(30.seconds, :small))
-                  - else
-                    = image_tag('noimage.jpg')
-                  %h1= article.title
-                  .content= article.content.truncate(50).html_safe
-                  .clearfix
-                    .date.pull-left= article.published_at.strftime("%Y/%-m/%-d")
-                    .btn.btn-xs.btn-ghost.pull-right 続きを読む
-
-          .text-center= paginate @articles
+        = render 'shared/article_list'
+        .text-center= paginate @articles
 
       .col-md-4
         %aside#sidebar
