@@ -14,6 +14,7 @@
 //= require jquery-ujs/src/rails.js
 //= require jquery-ui/jquery-ui.min.js
 //= require bootstrap/dist/js/bootstrap.min.js
+//= require tag-it.min.js
 //= require medium-editor/dist/js/medium-editor
 //= require handlebars/handlebars.runtime.min.js
 //= require jquery-sortable/source/js/jquery-sortable-min.js
