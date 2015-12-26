@@ -36,3 +36,20 @@ $(document).ready (function(){
     $("#article_" + $(this).attr("data-field-id")).val($(this).html().replace("#{params[:files]}", "url"));
   });
 });
+
+$(function () {
+  $(".editable").mediumInsert({
+    editor: editor,
+    addons: {
+      images: {
+        fileUploadOptions: {
+          url: '/article_images',
+          paramName: 'article_image[image]',
+          acceptFileTypes: /(.|\/)(gif|jpe?g|png)$/i
+        },
+        deleteScript: '/article_images/destroy',
+        deleteMethod: 'DELETE'
+      }
+    }
+  });
+});

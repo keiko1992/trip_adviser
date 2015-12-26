@@ -8,3 +8,4 @@ s3:
     bucket: <%= ENV['DEV_S3_PRIVATE_BUCKET_NAME'] %>
   common:
     article_image_path: ':class/images/:id/:filename/:style'
+    article_embedded_image_path: 'article/embedded_images/:id/:filename/:style'
