@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :redirect_invalid_user, only: [:edit, :update, :destroy]
-  before_action :set_popular_article_ids, only: [:index, :show]
+  before_action :set_latest_articles, only: [:show, :search]
+  before_action :set_popular_article_ids, only: [:index, :show, :search]
   before_action :set_available_tags_to_gon, only: [:new, :edit]
   before_action :set_article_tags_to_gon, only: [:edit]
   load_and_authorize_resource
@@ -27,7 +28,6 @@ class ArticlesController < ApplicationController
 
     @article.store_pv
 
-    @latest_articles = Article.latest_articles(10)
     @prev_article = @article.previous_article
     @next_article = @article.next_article
   end
@@ -68,10 +68,19 @@ class ArticlesController < ApplicationController
     redirect_to list_articles_path, notice: 'Article was successfully destroyed.'
   end
 
+  # POST /article/search
+  def search
+    @articles = Article.publishable.tagged_with(params[:tag], any: true).order(published_at: :desc, id: :desc).page(params[:page]).per(12)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.friendly.find(params[:id])
+    end
+
+    def set_latest_articles
+      @latest_articles = Article.latest_articles(5)
     end
 
     def set_popular_article_ids

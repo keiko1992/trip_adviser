@@ -1,0 +1,16 @@
+- title "「#{params[:tag]}」に関連する記事一覧"
+
+#article
+  .container
+    %header.text-center.mb-20
+      %h2= title
+
+    .row
+      .col-md-8
+        = render 'shared/article_list'
+        .text-center= paginate @articles
+
+      .col-md-4
+        %aside#sidebar
+          = render 'shared/popular_articles', locals: {popular_article_ids: @popular_article_ids}
+          = render 'shared/latest_articles', locals: {latest_articles: @latest_articles}
