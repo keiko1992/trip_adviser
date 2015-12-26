@@ -66,4 +66,22 @@ class Article < ActiveRecord::Base
   def next_article
     Article.publishable.where(['published_at > ?', self.published_at]).order(published_at: :asc).first
   end
+
+  # PV ranking
+  if ENV["REDISCLOUD_URL"]
+    Redis = Redis.new(url: ENV["REDISCLOUD_URL"])
+  else
+    Redis = Redis.new
+  end
+
+  def store_pv
+    unless Rails.env.test?
+      Redis.zincrby("articles/daily/#{Date.today.to_s}", 1, "#{self.id}").to_i
+      Redis.zincrby("articles/all", 1, "#{self.id}").to_i
+    end
+  end
+
+  def self.popular_article_ids(number)
+    Redis.zrevrange "articles/all", 0, number - 1
+  end
 end

@@ -59,4 +59,5 @@
                         = image_tag('noimage_thumb.jpg')
 
       %aside#sidebar.col-md-4
+        = render 'shared/popular_articles', locals: {popular_article_ids: @popular_article_ids}
         = render 'shared/latest_articles', locals: {latest_articles: @latest_articles}

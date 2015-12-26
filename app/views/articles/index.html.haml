@@ -25,3 +25,4 @@
 
       .col-md-4
         %aside#sidebar
+          = render 'shared/popular_articles', locals: {popular_article_ids: @popular_article_ids}
