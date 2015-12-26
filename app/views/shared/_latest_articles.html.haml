@@ -7,7 +7,7 @@
           = link_to article_path(article.slug) do
             .thumb.col-xs-3
               - if article.image.present?
-                = image_tag(article.authenticated_image_url(:thumb))
+                = image_tag(article.image.expiring_url(30.seconds, :thumb))
               - else
                 = image_tag('noimage_thumb.jpg')
             .body.col-xs-9
