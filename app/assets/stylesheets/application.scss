@@ -151,6 +151,11 @@ body {
 .mb-40 {margin-bottom: 40px;}
 .mh-100 {min-height: 100px;}
 
+// Tag
+.tagit-autocomplete.ui-widget-content {font-size: 13px; background-color: white; border: 1px solid $lb; @include border-radius(4px);}
+.tagit-autocomplete.ui-menu .ui-menu-item {background-color: inherit;}
+.tagit-autocomplete.ui-menu .ui-menu-item:hover {color: $pc; font-weight: 700; background-color: inherit; border: none;}
+
 
 
 /* Pages */
@@ -214,6 +219,9 @@ body {
   }
   .editable:hover {border-color: $aa; box-shadow: none;}
   .editable:focus {border-color: $lb; box-shadow: none;}
+  .article-tags {font-size: 13px; border: 2px solid $e0; box-shadow: none; @include border-radius(4px); min-height: 34px; padding: 1px 12px;}
+  .article-tags:hover {border-color: $aa; box-shadow: none;}
+  .tagit-choice-editable, .tagit-new {padding: 2px 18px 2px 5px;}
   .uploading {color: $pc; font-weight: 700; border: 2px solid $lb; @include border-radius(4px); padding: 10px 15px;}
 }
 
