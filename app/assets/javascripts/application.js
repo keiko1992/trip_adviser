@@ -13,6 +13,7 @@
 //= require jquery/dist/jquery.min.js
 //= require jquery-ujs/src/rails.js
 //= require bootstrap/dist/js/bootstrap.min.js
+//= require medium-editor/dist/js/medium-editor
 //= require turbolinks
 //= require_tree .
 
@@ -22,5 +23,10 @@ $(document).ready (function(){
   // hide alert automatically
   $(".alert").fadeTo(2000, 500).slideUp(300, function(){
     $(".alert").alert('close');
+  });
+
+  // Medium-Editor
+  $('.editable').bind('input propertychange', function() {
+    $("#article_" + $(this).attr("data-field-id")).val($(this).html().replace("#{params[:files]}", "url"));
   });
 });

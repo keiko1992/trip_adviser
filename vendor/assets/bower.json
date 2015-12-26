@@ -3,6 +3,7 @@
   "dependencies": {
     "bootstrap": "latest",
     "jquery": "latest",
-    "jquery-ujs": "latest"
+    "jquery-ujs": "latest",
+    "medium-editor": "latest"
   }
 }

@@ -26,7 +26,7 @@
           .mb-10
             %small ※ヘッダーをクリックするとソートできます
         - if can? :create, Article
-          .pull-right= link_to '新しい記事を作成', new_article_path, class: "btn btn-pc"
+          .pull-right= link_to '新しい記事を作成', new_article_path, class: "btn btn-pc", data: {no_turbolink: true}
       .panel.panel-default
         %table.table.table-hover
           %thead
@@ -52,7 +52,7 @@
                 %td= article.published_at.strftime("%Y-%m-%d %H:%M") if article.published_at && article.published?
                 %td= link_to '表示', article_path(article.slug)
                 - if can? :update, Article
-                  %td= link_to '編集', edit_article_path(article.slug)
+                  %td= link_to '編集', edit_article_path(article.slug), data: {no_turbolink: true}
                 %td= link_to '削除', article, method: :delete, data: {confirm: '本当によろしいですか？' }
 
       .text-center= paginate @articles

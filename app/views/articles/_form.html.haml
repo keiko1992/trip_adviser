@@ -18,7 +18,12 @@
           = f.text_field :slug, class: "form-control", required: true
       .field
         = f.label :content
-        = f.text_area :content, class: "form-control", required: true
+        = f.hidden_field :content, html: { id: "content" }
+        .editable{"data-field-id" => "content"}= @article.content.html_safe
+      .actions
+        = f.submit '保存する', class: "btn btn-pc"
+        = link_to '戻る', list_articles_path, class: "btn btn-ghost"
+
     .col-md-4
       .field
         = f.label :place
@@ -46,6 +51,11 @@
         = f.check_box :published
         = f.label :published, "この記事を公開する"
 
-  .actions
-    = f.submit '保存する', class: "btn btn-pc"
-    = link_to '戻る', list_articles_path, class: "btn btn-ghost"
+:javascript
+  var editor = new MediumEditor('.editable', {
+    autoLink: true,
+    anchorPreview: {
+      hideDelay: 500,
+      previewValueSelector: 'a'
+    }
+  });
