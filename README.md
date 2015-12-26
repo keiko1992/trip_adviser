@@ -22,6 +22,6 @@ password: password
 
 As User (users/sign_in)
 ```
-email: test@example.com
+email: user@example.com
 password: password
 ```
