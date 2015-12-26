@@ -64,6 +64,7 @@ gem 'redis-namespace'
 # Background Job
 gem 'sidekiq'
 gem 'sinatra', require: false
+gem 'delayed_paperclip'
 
 # Miscellaneous stuffs
 gem 'bower-rails', '~> 0.10.0'
