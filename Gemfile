@@ -32,7 +32,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
   gem 'faker'
   gem 'launchy'
