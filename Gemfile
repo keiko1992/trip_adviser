@@ -61,6 +61,10 @@ gem 'aws-sdk'
 gem 'redis', '~>3.2'
 gem 'redis-namespace'
 
+# Background Job
+gem 'sidekiq'
+gem 'sinatra', require: false
+
 # Miscellaneous stuffs
 gem 'bower-rails', '~> 0.10.0'
 gem 'config'
