@@ -36,7 +36,7 @@ class Article < ActiveRecord::Base
 
   has_attached_file :image,
     styles: {large: '1600x900#', small: '400x225#', ogp: '1200x630#', wide: '1600x500#', thumb: '300x300#'},
-    path: Settings.s3.public.article_image_path
+    path: Settings.s3.common.article_image_path
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   # Article status

@@ -1,7 +1,10 @@
+aws:
+  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
 s3:
   public:
-    article_image_path: ':class/images/:id/:filename/:style'
     bucket: <%= ENV['S3_PUBLIC_BUCKET_NAME'] %>
   private:
-    article_image_path: ':class/images/:id/:filename/:style'
     bucket: <%= ENV['S3_PRIVATE_BUCKET_NAME'] %>
+  common:
+    article_image_path: ':class/images/:id/:filename/:style'
