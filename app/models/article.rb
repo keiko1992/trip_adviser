@@ -26,6 +26,7 @@
 
 class Article < ActiveRecord::Base
   belongs_to :user
+  has_many :article_images
 
   validates :user_id, :title, :slug, :content, :place, presence: true
   validates :title, :slug, uniqueness: true

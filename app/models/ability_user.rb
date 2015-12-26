@@ -8,5 +8,9 @@ class AbilityUser
     can :list, Article
     can :update, Article
     can :destroy, Article
+
+    # ArticleImage
+    can :create, ArticleImage
+    can :destroy, ArticleImage
   end
 end

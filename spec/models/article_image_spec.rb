@@ -19,5 +19,17 @@
 require 'rails_helper'
 
 RSpec.describe ArticleImage, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory" do
+    expect(build(:article_image)).to be_valid
+  end
+
+  it "belongs to article" do
+    is_expected.to belong_to(:article)
+  end
+
+  it "is invalid without an article_id" do
+    article_image = build(:article_image, article_id: nil)
+    article_image.valid?
+    expect(article_image).to be_invalid
+  end
 end

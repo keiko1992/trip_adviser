@@ -18,7 +18,7 @@
 
 FactoryGirl.define do
   factory :article_image do
-    article nil
+    article_id {Faker::Number.number(1)}
   end
 
 end

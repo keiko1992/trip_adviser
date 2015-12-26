@@ -18,4 +18,12 @@
 
 class ArticleImage < ActiveRecord::Base
   belongs_to :article
+
+  validates :article_id, presence: true
+
+  has_attached_file :image,
+    styles: {large: '1500x1000#', thumb: '300x200#'},
+    s3_permissions: "public-read",
+    path: Settings.s3.common.article_embedded_image_path
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 end

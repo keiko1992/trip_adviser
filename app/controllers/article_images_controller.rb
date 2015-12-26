@@ -1,38 +1,49 @@
 class ArticleImagesController < ApplicationController
   before_action :set_article_image, only: :destroy
+  before_action :set_article
+  before_action :redirect_invalid_user
+  load_and_authorize_resource
 
   # POST /article_images
   def create
     @article_image = ArticleImage.new(article_image_params)
+    @article_image['article_id'] = @article.id
 
-    respond_to do |format|
-      if @article_image.save
-        format.html { redirect_to @article_image, notice: 'Article image was successfully created.' }
-        format.json { render :show, status: :created, location: @article_image }
-      else
-        format.html { render :new }
-        format.json { render json: @article_image.errors, status: :unprocessable_entity }
-      end
+    if @article_image.save
+      url_response = {files: [{url: @article_image.image.url(:large)}]}
+      render json: url_response, status: 200
+    else
+      render nothing: true, status: 500
     end
   end
 
   # DELETE /article_images/1
   def destroy
-    @article_image.destroy
-    respond_to do |format|
-      format.html { redirect_to article_images_url, notice: 'Article image was successfully destroyed.' }
-      format.json { head :no_content }
+    if @article_image.destroy
+      render nothing: true, status: 200
+    else
+      render nothing: true, status: 500
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article_image
-      @article_image = ArticleImage.find(params[:id])
+      article_image_slug = params[:file].split("/")[5]
+      @article_image = ArticleImage.find(article_image_slug)
+    end
+
+    def set_article
+      article_slug = request.referer.split("/")[4]
+      @article = Article.friendly.find(article_slug)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_image_params
-      params.require(:article_image).permit(:article_id)
+      params.require(:article_image).permit(:image)
+    end
+
+    def redirect_invalid_user
+      return redirect_to root_path if user_signed_in? && current_user != @article.user
     end
 end
