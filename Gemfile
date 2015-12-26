@@ -54,8 +54,8 @@ gem 'cancancan'
 gem 'devise'
 
 # Image upload
-gem "paperclip", "~> 4.3"
-gem 'aws-sdk', '< 2.0'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk'
 
 # PV ranking
 gem 'redis', '~>3.2'
