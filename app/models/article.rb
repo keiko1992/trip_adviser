@@ -32,6 +32,7 @@ class Article < ActiveRecord::Base
   validates :title, :slug, uniqueness: true
 
   acts_as_paranoid
+  acts_as_taggable
 
   extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]

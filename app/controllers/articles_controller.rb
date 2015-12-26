@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :redirect_invalid_user, only: [:edit, :update, :destroy]
   before_action :set_popular_article_ids, only: [:index, :show]
+  before_action :set_available_tags_to_gon, only: [:new, :edit]
+  before_action :set_article_tags_to_gon, only: [:edit]
   load_and_authorize_resource
 
   # GET /articles
@@ -78,7 +80,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :content, :place, :slug, :published, :published_at, :image)
+      params.require(:article).permit(:title, :content, :place, :slug, :published, :published_at, :image, :tag_list)
     end
 
     def check_permission
@@ -87,5 +89,13 @@ class ArticlesController < ApplicationController
 
     def redirect_invalid_user
       return redirect_to root_path if user_signed_in? && current_user != @article.user
+    end
+
+    def set_available_tags_to_gon
+      gon.available_tags = Article.tags_on(:tags).pluck(:name)
+    end
+
+    def set_article_tags_to_gon
+      gon.article_tags = @article.tag_list
     end
 end
