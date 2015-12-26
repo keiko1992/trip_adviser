@@ -73,9 +73,10 @@ Rails.application.configure do
   # Global defaults for Paperclip
   config.paperclip_defaults = {
     storage: :s3,
-    s3_credentials: {access_key_id: ENV['DEV_AWS_ACCESS_KEY_ID'], secret_access_key: ENV['DEV_AWS_SECRET_ACCESS_KEY']},
+    s3_credentials: {access_key_id: Settings.aws.access_key_id, secret_access_key: Settings.aws.secret_access_key},
     url: ':s3_domain_url',
     s3_permissions: :private,
+    s3_region: ENV['DEV_S3_REGION'],
     bucket: Settings.s3.public.bucket,
     path: '/:class/:attachment/:id_partition/:style/:filename',
   }

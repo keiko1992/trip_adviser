@@ -17,6 +17,7 @@
 #  image_content_type :string
 #  image_file_size    :integer
 #  image_updated_at   :datetime
+#  image_processing   :boolean
 #
 # Indexes
 #
@@ -36,8 +37,9 @@ class Article < ActiveRecord::Base
 
   has_attached_file :image,
     styles: {large: '1600x900#', small: '400x225#', ogp: '1200x630#', wide: '1600x500#', thumb: '300x300#'},
-    path: Settings.s3.public.article_image_path
+    path: Settings.s3.common.article_image_path
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  process_in_background :image, url_with_processing: false
 
   # Article status
   def self.publishable

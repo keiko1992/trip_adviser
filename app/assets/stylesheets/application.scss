@@ -192,6 +192,7 @@ body {
       th a {color: $b3;}
     }
   }
+  .uploading {color: $pc; font-weight: 700; border: 2px solid $lb; @include border-radius(4px); padding: 10px 15px;}
 }
 
 #article {

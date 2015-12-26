@@ -27,7 +27,11 @@
         = f.label :image
         %br
         .mb-10= f.file_field :image
-        - if @article.image.present?
+        - if @article.image.processing?
+          .uploading.text-center
+            = fa_icon "cloud-upload", text: "ただいま画像アップロード中です"
+            .reload-massage （数秒後にリロードすると画像が表示されます）
+        - elsif @article.image.present?
           %label アイキャッチ用画像
           .mb-20= image_tag(@article.image.expiring_url(30.seconds, :small))
           %label 記事ページトップ用画像
