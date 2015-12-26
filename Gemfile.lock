@@ -56,6 +56,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.5.0)
+      activerecord (>= 3.2, < 5)
     addressable (2.4.0)
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
@@ -158,6 +160,11 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
     guard (2.13.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
@@ -278,6 +285,7 @@ GEM
     redis (3.2.2)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
+    request_store (1.2.1)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     rspec (3.4.0)
@@ -373,6 +381,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 3.4)
   annotate
   autoprefixer-rails
   aws-sdk
@@ -395,6 +404,7 @@ DEPENDENCIES
   faker
   font-awesome-rails
   friendly_id (~> 5.1.0)
+  gon
   guard-rspec
   haml-rails
   jbuilder (~> 2.0)

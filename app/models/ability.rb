@@ -10,5 +10,6 @@ class Ability
 
     # Article
     can :read, Article
+    can :search, Article
   end
 end

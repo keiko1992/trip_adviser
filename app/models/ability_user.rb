@@ -6,6 +6,7 @@ class AbilityUser
     can :create, Article
     can :read, Article
     can :list, Article
+    can :search, Article
     can :update, Article
     can :destroy, Article
 

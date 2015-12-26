@@ -31,6 +31,7 @@
 #    new_user_confirmation GET      /users/confirmation/new(.:format) devise/confirmations#new
 #                          GET      /users/confirmation(.:format)     devise/confirmations#show
 #            list_articles GET|POST /articles/list(.:format)          articles#list
+#          search_articles POST     /articles/search(.:format)        articles#search
 #                 articles GET      /articles(.:format)               articles#index
 #                          POST     /articles(.:format)               articles#create
 #              new_article GET      /articles/new(.:format)           articles#new
@@ -70,6 +71,7 @@ Rails.application.routes.draw do
   resources :articles do
     collection do
       match 'list', to: 'articles#list', via: [:get, :post]
+      post 'search'
     end
   end
   resources :article_images, only: :create do

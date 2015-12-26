@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require bootstrap/dist/css/bootstrap.min.css
+ *= require jquery.tagit.css
+ *= require tagit.ui-zendesk.css
  *= require medium-editor/dist/css/medium-editor
  *= require medium-editor/dist/css/themes/flat
  *= require medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin
@@ -149,6 +151,11 @@ body {
 .mb-40 {margin-bottom: 40px;}
 .mh-100 {min-height: 100px;}
 
+// Tag
+.tagit-autocomplete.ui-widget-content {font-size: 13px; background-color: white; border: 1px solid $lb; @include border-radius(4px);}
+.tagit-autocomplete.ui-menu .ui-menu-item {background-color: inherit;}
+.tagit-autocomplete.ui-menu .ui-menu-item:hover {color: $pc; font-weight: 700; background-color: inherit; border: none;}
+
 
 
 /* Pages */
@@ -212,6 +219,9 @@ body {
   }
   .editable:hover {border-color: $aa; box-shadow: none;}
   .editable:focus {border-color: $lb; box-shadow: none;}
+  .article-tags {font-size: 13px; border: 2px solid $e0; box-shadow: none; @include border-radius(4px); min-height: 34px; padding: 1px 12px;}
+  .article-tags:hover {border-color: $aa; box-shadow: none;}
+  .tagit-choice-editable, .tagit-new {padding: 2px 18px 2px 5px;}
   .uploading {color: $pc; font-weight: 700; border: 2px solid $lb; @include border-radius(4px); padding: 10px 15px;}
 }
 
@@ -221,6 +231,12 @@ body {
     margin-bottom: 50px;
     h1 {font-size: 26px; margin-bottom: 10px;}
     .date {color: $aa; border-right: 1px solid $e0; margin: 0 10px 10px 0; padding-right: 10px;}
+    .tags {
+      color: $aa; margin-bottom: 10px;
+      ul {margin-bottom: 0;}
+      li {padding: 0 0 0 5px;}
+      a, a:hover {color: $aa;}
+    }
     .social {
       .facebook, .twitter {margin-right: 5px;}
     }
@@ -237,13 +253,17 @@ body {
     img {@include border-radius(4px);}
     .prev_article, .next_article {margin-bottom: 20px;}
   }
-  .related-articles, .articles-list {
+}
+
+#article, #latest-articles {
+  .articles-list, .related-articles {
     article {
       margin-bottom: 40px; min-height: 280px;
       h1 {color: $b3; font-size: 16px; font-weight: 700; line-height: 1.4; margin-bottom: 5px;}
       img {@include border-radius(4px); margin-bottom: 10px;}
       a:hover, a:focus {text-decoration: none;}
-      .content, .content p {color: $aa; font-size: 12px; font-weight: 100; line-height: 1.4; margin-bottom: 5px;}
+      .category {font-size: 12px; margin-bottom: 5px;}
+      .content, .content p {color: $aa; font-size: 12px; font-weight: 100; min-height: 50px; line-height: 1.4; margin-bottom: 5px;}
       .date {color: $aa; font-size: 12px; font-weight: 100; margin: 3px 0 5px;}
     }
     article:hover {

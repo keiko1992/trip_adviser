@@ -1,23 +1,9 @@
 #home
   .container
     .row
-      .col-md-8
-        %section#latest-articles
-          .row
-            - @articles.each do |article|
-              %article.col-sm-6
-                = link_to article_path(article.slug) do
-                  - if article.image.present?
-                    = image_tag(article.image.expiring_url(30.seconds, :large))
-                  - else
-                    = image_tag('noimage.jpg')
-                  %h1= article.title
-                  .content= article.content.truncate(50).html_safe
-                  .clearfix
-                    .date.pull-left= article.published_at.strftime("%Y/%-m/%-d")
-                    .btn.btn-xs.btn-ghost.pull-right 続きを読む
-
-          .readmore.text-center= link_to "もっと記事を表示する", articles_path, class: "btn btn-pc"
+      #latest-articles.col-md-8
+        = render 'shared/article_list'
+        .loadmore.text-center= link_to "もっと記事を表示する", articles_path, class: "btn btn-pc"
 
       .col-md-4
         %aside#sidebar

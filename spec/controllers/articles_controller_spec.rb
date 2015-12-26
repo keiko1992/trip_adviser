@@ -121,9 +121,9 @@ RSpec.describe ArticlesController, type: :controller do
       @published_future_article = create(:future_article, user_id: @user.id)
       @hidden_article = create(:hidden_article, user_id: @user.id)
 
-      @published_articles = create_list(:published_article, 10)
-      @future_articles = create_list(:future_article, 10)
-      @hidden_articles = create_list(:hidden_article, 10)
+      @published_articles = create_list(:published_article, 5)
+      @future_articles = create_list(:future_article, 5)
+      @hidden_articles = create_list(:hidden_article, 5)
     end
 
     context 'Guest' do
@@ -143,9 +143,10 @@ RSpec.describe ArticlesController, type: :controller do
         expect(response).to redirect_to root_path
       end
 
-      it "assigns 10 latest articles as @latest_articles" do
+      it "assigns 5 latest articles as @latest_articles" do
         get :show, id: @published_article.slug
         expect(assigns(:latest_articles)).to eq(@published_articles.reverse)
+        expect(assigns(:latest_articles).size).to eq 5
       end
 
       it "assigns previous article as @prev_article" do
@@ -214,9 +215,10 @@ RSpec.describe ArticlesController, type: :controller do
           sign_in @user
         end
 
-        it "assigns 10 latest articles as @latest_articles" do
+        it "assigns 5 latest articles as @latest_articles" do
           get :show, id: @published_article.slug
           expect(assigns(:latest_articles)).to eq(@published_articles.reverse)
+          expect(assigns(:latest_articles).size).to eq 5
         end
 
         it "assigns previous article as @prev_article" do
@@ -256,9 +258,10 @@ RSpec.describe ArticlesController, type: :controller do
         expect(assigns(:article)).to eq(@hidden_article)
       end
 
-      it "assigns 10 latest articles as @latest_articles" do
+      it "assigns 5 latest articles as @latest_articles" do
         get :show, id: @published_article.slug
         expect(assigns(:latest_articles)).to eq(@published_articles.reverse)
+        expect(assigns(:latest_articles).size).to eq 5
       end
 
       it "assigns previous article as @prev_article" do
@@ -570,6 +573,84 @@ RSpec.describe ArticlesController, type: :controller do
       it "redirects to the articles#list" do
         delete :destroy, id: @article.slug
         expect(response).to redirect_to list_articles_path
+      end
+    end
+  end
+
+  describe "POST #search" do
+    before do
+      @published_articles = create_list(:published_article, 5)
+      @published_future_articles = create_list(:future_article, 5)
+      @hidden_articles = create_list(:hidden_article, 5)
+
+      @article = @published_articles.first
+      @article.tag_list.add("awesome", "slick")
+      @article.save
+    end
+
+    context 'Guest' do
+      it "can access" do
+        post :search, tag: "awesome"
+        expect(response).to have_http_status(:success)
+      end
+
+      it "assigns the related publishable articles as @articles" do
+        post :search, tag: "awesome"
+        expect(assigns(:articles)).to eq([@article])
+      end
+
+      it "assigns 5 latest publishable articles as @latest_articles" do
+        post :search, tag: "awesome"
+        expect(assigns(:latest_articles)).to eq (@published_articles.reverse)
+        expect(assigns(:latest_articles).size).to eq 5
+      end
+    end
+
+    context 'User' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:user]
+        @user = create(:user)
+        sign_in @user
+      end
+
+      it "can access" do
+        post :search, tag: "awesome"
+        expect(response).to have_http_status(:success)
+      end
+
+      it "assigns the related publishable articles as @articles" do
+        post :search, tag: "awesome"
+        expect(assigns(:articles)).to eq([@article])
+      end
+
+      it "assigns 5 latest publishable articles as @latest_articles" do
+        post :search, tag: "awesome"
+        expect(assigns(:latest_articles)).to eq (@published_articles.reverse)
+        expect(assigns(:latest_articles).size).to eq 5
+      end
+    end
+
+    context 'Admin' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:admin]
+        @admin = create(:admin)
+        sign_in @admin
+      end
+
+      it "can access" do
+        post :search, tag: "awesome"
+        expect(response).to have_http_status(:success)
+      end
+
+      it "assigns the related publishable articles as @articles" do
+        post :search, tag: "awesome"
+        expect(assigns(:articles)).to eq([@article])
+      end
+
+      it "assigns 5 latest publishable articles as @latest_articles" do
+        post :search, tag: "awesome"
+        expect(assigns(:latest_articles)).to eq (@published_articles.reverse)
+        expect(assigns(:latest_articles).size).to eq 5
       end
     end
   end

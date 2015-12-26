@@ -1,3 +1,5 @@
+= include_gon
+  
 = form_for @article, html: {multipart: true} do |f|
   - if @article.errors.any?
     #error_explanation
@@ -28,6 +30,9 @@
       .field
         = f.label :place
         = f.text_field :place, class: "form-control", required: true
+      .field
+        = f.label :tag
+        %ul.article-tags
       .field
         = f.label :image
         %br

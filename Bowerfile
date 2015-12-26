@@ -4,5 +4,6 @@
 asset 'bootstrap'
 asset 'jquery'
 asset 'jquery-ujs'
+asset 'jquery-ui'
 asset 'medium-editor'
 asset 'medium-editor-insert-plugin'

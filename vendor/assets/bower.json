@@ -4,6 +4,7 @@
     "bootstrap": "latest",
     "jquery": "latest",
     "jquery-ujs": "latest",
+    "jquery-ui": "latest",
     "medium-editor": "latest",
     "medium-editor-insert-plugin": "latest"
   }
