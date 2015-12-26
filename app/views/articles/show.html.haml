@@ -21,8 +21,8 @@
 
       - if @article.image.present?
         #header-image
-          .hidden-xs= image_tag(@article.authenticated_image_url(:wide))
-          .hidden-sm.hidden-md.hidden-lg.full-header= image_tag(@article.authenticated_image_url(:large))
+          .hidden-xs= image_tag(@article.image.expiring_url(30.seconds, :wide))
+          .hidden-sm.hidden-md.hidden-lg.full-header= image_tag(@article.image.expiring_url(30.seconds, :large))
 
     .row
       %section.col-md-8
@@ -36,7 +36,7 @@
                   .row
                     .col-xs-4
                       - if @prev_article.image.present?
-                        = image_tag(@prev_article.authenticated_image_url(:thumb))
+                        = image_tag(@prev_article.image.expiring_url(30.seconds, :thumb))
                       - else
                         = image_tag('noimage_thumb.jpg')
                     .col-xs-8
@@ -54,9 +54,10 @@
                       %h5= @next_article.title
                     .col-xs-4
                       - if @next_article.image.present?
-                        = image_tag(@next_article.authenticated_image_url(:thumb))
+                        = image_tag(@next_article.image.expiring_url(30.seconds, :thumb))
                       - else
                         = image_tag('noimage_thumb.jpg')
 
       %aside#sidebar.col-md-4
+        = render 'shared/popular_articles', locals: {popular_article_ids: @popular_article_ids}
         = render 'shared/latest_articles', locals: {latest_articles: @latest_articles}

@@ -1,7 +1,8 @@
-#sidebar-latest-articles
-  %h4 最新の記事はこちら
+#sidebar-popular-articles
+  %h4 人気の記事はこちら
   %ul.list-unstyled
-    - @latest_articles.each do |article|
+    - @popular_article_ids.each do |id|
+      - article = Article.publishable.find(id)
       %li
         %article.row
           = link_to article_path(article.slug) do

@@ -12,7 +12,7 @@
               %article.col-sm-6
                 = link_to article_path(article.slug) do
                   - if article.image.present?
-                    = image_tag(article.authenticated_image_url(:small))
+                    = image_tag(article.image.expiring_url(30.seconds, :small))
                   - else
                     = image_tag('noimage.jpg')
                   %h1= article.title
@@ -25,3 +25,4 @@
 
       .col-md-4
         %aside#sidebar
+          = render 'shared/popular_articles', locals: {popular_article_ids: @popular_article_ids}

@@ -39,14 +39,12 @@ class Article < ActiveRecord::Base
     path: Settings.s3.public.article_image_path
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  def authenticated_image_url(style)
-    image.s3_object(style).url_for(:read, secure: true)
-  end
-
+  # Article status
   def self.publishable
     Article.where(published: true).where(['published_at < ?', Time.zone.now])
   end
 
+  # pickup articles
   def self.latest_articles(number)
     Article.publishable.order(published_at: :desc, id: :desc).limit(number)
   end
@@ -55,15 +53,29 @@ class Article < ActiveRecord::Base
     Article.publishable.where(featured: true).order(published_at: :desc, id: :desc).limit(number)
   end
 
-  def self.popular_article_ids(number)
-    Redis.zrevrange "articles/all", 0, number - 1
-  end
-
   def previous_article
     Article.publishable.where(['published_at < ?', self.published_at]).order(published_at: :desc).first
   end
 
   def next_article
     Article.publishable.where(['published_at > ?', self.published_at]).order(published_at: :asc).first
+  end
+
+  # PV ranking
+  if ENV["REDISCLOUD_URL"]
+    Redis = Redis.new(url: ENV["REDISCLOUD_URL"])
+  else
+    Redis = Redis.new
+  end
+
+  def store_pv
+    unless Rails.env.test?
+      Redis.zincrby("articles/daily/#{Date.today.to_s}", 1, "#{self.id}").to_i
+      Redis.zincrby("articles/all", 1, "#{self.id}").to_i
+    end
+  end
+
+  def self.popular_article_ids(number)
+    Redis.zrevrange "articles/all", 0, number - 1
   end
 end

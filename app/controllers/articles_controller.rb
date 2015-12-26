@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :redirect_invalid_user, only: [:edit, :update, :destroy]
+  before_action :set_popular_article_ids, only: [:index, :show]
   load_and_authorize_resource
 
   # GET /articles
@@ -21,6 +22,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   def show
     check_permission if (@article.published_at > Time.zone.now) || !@article.published?
+
+    @article.store_pv
 
     @latest_articles = Article.latest_articles(10)
     @prev_article = @article.previous_article
@@ -67,6 +70,10 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.friendly.find(params[:id])
+    end
+
+    def set_popular_article_ids
+      @popular_article_ids = Article.popular_article_ids(5) unless Rails.env.test?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
