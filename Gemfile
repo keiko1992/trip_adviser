@@ -57,6 +57,10 @@ gem 'devise'
 gem "paperclip", "~> 4.3"
 gem 'aws-sdk', '< 2.0'
 
+# PV ranking
+gem 'redis', '~>3.2'
+gem 'redis-namespace'
+
 # Miscellaneous stuffs
 gem 'bower-rails', '~> 0.10.0'
 gem 'config'
