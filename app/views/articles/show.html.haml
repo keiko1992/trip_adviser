@@ -25,7 +25,7 @@
             %ul.list-inline
               = fa_icon "tag"
               - @article.tag_list.each do |tag|
-                %li= tag
+                %li= link_to tag, search_articles_path(tag: tag), method: :post
 
       - if @article.image.present?
         #header-image
