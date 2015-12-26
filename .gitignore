@@ -17,6 +17,9 @@
 !/log/.keep
 /tmp
 
+# Ignore the Redis dump file.
+dump.rdb
+
 .DS_Store
 
 config/settings.local.yml
