@@ -29,11 +29,11 @@
         .mb-10= f.file_field :image
         - if @article.image.present?
           %label アイキャッチ用画像
-          .mb-20= image_tag(@article.authenticated_image_url(:small))
+          .mb-20= image_tag(@article.image.expiring_url(30.seconds, :small))
           %label 記事ページトップ用画像
-          .mb-20= image_tag(@article.authenticated_image_url(:wide))
+          .mb-20= image_tag(@article.image.expiring_url(30.seconds, :wide))
           %label サムネイル画像
-          .mb-20= image_tag(@article.authenticated_image_url(:thumb))
+          .mb-20= image_tag(@article.image.expiring_url(30.seconds, :thumb))
       .field
         = f.label :published_at
         %br

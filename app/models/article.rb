@@ -39,24 +39,18 @@ class Article < ActiveRecord::Base
     path: Settings.s3.public.article_image_path
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  def authenticated_image_url(style)
-    image.s3_object(style).url_for(:read, secure: true)
-  end
-
+  # Article status
   def self.publishable
     Article.where(published: true).where(['published_at < ?', Time.zone.now])
   end
 
+  # pickup articles
   def self.latest_articles(number)
     Article.publishable.order(published_at: :desc, id: :desc).limit(number)
   end
 
   def self.featured_articles(number)
     Article.publishable.where(featured: true).order(published_at: :desc, id: :desc).limit(number)
-  end
-
-  def self.popular_article_ids(number)
-    Redis.zrevrange "articles/all", 0, number - 1
   end
 
   def previous_article

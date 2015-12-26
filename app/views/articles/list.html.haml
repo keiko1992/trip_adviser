@@ -46,7 +46,7 @@
             - @articles.each do |article|
               %tr
                 %td= i += 1
-                %td= image_tag(article.authenticated_image_url(:small), size: "160x90") if article.image.present?
+                %td= image_tag(article.image.expiring_url(30.seconds, :small), size: "160x90") if article.image.present?
                 %td= article.title
                 %td= article.published? ? "公開済み" : "非公開"
                 %td= article.published_at.strftime("%Y-%m-%d %H:%M") if article.published_at && article.published?
